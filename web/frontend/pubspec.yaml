@@ -39,6 +39,7 @@ dependencies:
   charts_flutter: ^0.12.0
   shared_preferences: ^2.0.13
   http: ^0.13.4
+  provider: ^6.0.2
 
 dev_dependencies:
   flutter_test:

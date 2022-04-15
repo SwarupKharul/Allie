@@ -5,7 +5,9 @@ import 'package:devspace/ui/widgets/greenButton.dart';
 import 'package:flutter/material.dart';
 
 class Landing extends StatefulWidget {
-  const Landing({Key? key}) : super(key: key);
+  Landing({Key? key, required this.auth}) : super(key: key);
+
+  Auth auth;
 
   @override
   State<Landing> createState() => _LandingState();
@@ -60,7 +62,9 @@ class _LandingState extends State<Landing> {
                       onPressed: () {
                         Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) =>
-                              SignInPage(),
+                              SignInPage(
+                            auth: widget.auth,
+                          ),
                           transitionDuration: Duration.zero,
                           reverseTransitionDuration: Duration.zero,
                         ));
@@ -115,7 +119,9 @@ class _LandingState extends State<Landing> {
                         auth.register("suryaa62@gmail.com", "qwertyuiop");
                         Navigator.of(context).push(PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) =>
-                              SignUpPage(),
+                              SignUpPage(
+                            auth: auth,
+                          ),
                           transitionDuration: Duration.zero,
                           reverseTransitionDuration: Duration.zero,
                         ));

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:devspace/ui/widgets/appbar.dart';
 import 'package:devspace/ui/widgets/greenButton.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +83,9 @@ class _DrawTestPageState extends State<DrawTestPage> {
                     text: "Submit",
                     height: 50,
                     onp: () {
-                      _controller.clear();
+                      PictureDetails img = _controller.finish();
+                      Picture img1 = img.picture;
+                      print(img1);
                     },
                     width: 150)
               ],

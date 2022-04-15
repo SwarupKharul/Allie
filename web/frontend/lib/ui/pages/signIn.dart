@@ -1,14 +1,23 @@
+import 'package:devspace/core/services/auth.dart';
 import 'package:devspace/ui/widgets/greenButton.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  SignInPage({Key? key, required this.auth}) : super(key: key);
+
+  Auth auth;
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
+  // GlobalKey<FormState> _formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +88,9 @@ class _SignInPageState extends State<SignInPage> {
                             "Email",
                             style: Theme.of(context).textTheme.button,
                           ),
-                          TextFormField(),
+                          TextFormField(
+                            controller: _email,
+                          ),
                         ],
                       ),
                     ),
@@ -92,7 +103,10 @@ class _SignInPageState extends State<SignInPage> {
                             "Password",
                             style: Theme.of(context).textTheme.button,
                           ),
-                          TextFormField(),
+                          TextFormField(
+                            controller: _password,
+                            obscureText: true,
+                          ),
                         ],
                       ),
                     ),
@@ -114,7 +128,10 @@ class _SignInPageState extends State<SignInPage> {
                         child: GreenButton(
                             text: "Sign In",
                             height: 50,
-                            onp: () {},
+                            onp: () {
+                              widget.auth.login(_email.text, _password.text);
+                              Navigator.of(context).pop();
+                            },
                             width: 350),
                       ),
                     ),
