@@ -9,7 +9,7 @@ module.exports = {
     // for mainnet
     'optimism': {
       url: "https://mainnet.optimism.io",
-      // accounts: [privateKey1, privateKey2, ...]
+      accounts: [privateKey]
     },
     // for testnet
     'optimism-kovan': {

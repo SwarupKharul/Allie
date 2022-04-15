@@ -8,13 +8,13 @@ import "synthetix/contracts/interfaces/ISynthetix.sol";
 contract MyUnstake {
     IAddressResolver public synthetixResolver;
 
-    constructor(IAddressResolver _snxResolver) public {
-        synthetixResolver = _snxResolver;
+    constructor() public {
+        synthetixResolver = IAddressResolver(0x4E3b31eB0E5CB73641EE1E65E7dCEFe520bA3ef2);
     }
 
     function synthetixBurn() external {
-        ISynthetix synthetix = synthetixResolver.getAddress("Synthetix");
-        require(synthetix != address(0), "Synthetix is missing from Synthetix resolver");
+        ISynthetix synthetix = ISynthetix(synthetixResolver.getAddress("Synthetix"));
+        // require(synthetix != address(0), "Synthetix is missing from Synthetix resolver");
 
         uint debt = synthetix.debtBalanceOf(msg.sender, "sUSD");
 
@@ -23,8 +23,8 @@ contract MyUnstake {
     }
 
     function synthetixBurnOnBehalf(address user) external {
-        ISynthetix synthetix = synthetixResolver.getAddress("Synthetix");
-        require(synthetix != address(0), "Synthetix is missing from Synthetix resolver");
+        ISynthetix synthetix = ISynthetix(synthetixResolver.getAddress("Synthetix"));
+        // require(synthetix != address(0), "Synthetix is missing from Synthetix resolver");
 
         uint debt = synthetix.debtBalanceOf(user, "sUSD");
 

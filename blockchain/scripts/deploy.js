@@ -2,10 +2,6 @@ const hre = require("hardhat");
 const fs = require('fs');
 
 async function main() {
-    const MyContract = await hre.ethers.getContractFactory("MyDepot");
-    const mydepot = await MyContract.deploy();
-    await mydepot.deployed();
-    console.log("myDepot deployed to:", mydepot.address);
 
     // for MyReward
     const MyReward = await hre.ethers.getContractFactory("MyReward");
@@ -23,10 +19,10 @@ async function main() {
     const MyUnstake = await hre.ethers.getContractFactory("MyUnstake");
     const myunstake = await MyUnstake.deploy();
     await myunstake.deployed();
-    console.log("myUnstake deployed to:", myunstake.address);
+
 
     let config = `
-  export const mydepotaddress = "${mydepot.address}"
+  export const mydepotaddress = ""
   `
 
     let data = JSON.stringify(config)
