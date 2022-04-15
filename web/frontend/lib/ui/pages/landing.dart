@@ -1,3 +1,5 @@
+import 'package:devspace/core/services/auth.dart';
+import 'package:devspace/ui/pages/signIn.dart';
 import 'package:devspace/ui/pages/signUp.dart';
 import 'package:devspace/ui/widgets/greenButton.dart';
 import 'package:flutter/material.dart';
@@ -56,11 +58,12 @@ class _LandingState extends State<Landing> {
                     height: 57,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpPage(),
-                            ));
+                        Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) =>
+                              SignInPage(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero,
+                        ));
                       },
                       child: Text(
                         "Sign Up",
@@ -105,7 +108,19 @@ class _LandingState extends State<Landing> {
                   ),
                   SizedBox(height: 100),
                   GreenButton(
-                      text: "Get Started", height: 50, onp: () {}, width: 350)
+                      text: "Get Started",
+                      height: 50,
+                      onp: () {
+                        Auth auth = Auth();
+                        auth.register("suryaa62@gmail.com", "qwertyuiop");
+                        Navigator.of(context).push(PageRouteBuilder(
+                          pageBuilder: (context, animation1, animation2) =>
+                              SignUpPage(),
+                          transitionDuration: Duration.zero,
+                          reverseTransitionDuration: Duration.zero,
+                        ));
+                      },
+                      width: 350)
                 ],
               ),
             )

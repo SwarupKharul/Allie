@@ -1,3 +1,5 @@
+import 'package:devspace/ui/pages/blog.dart';
+import 'package:devspace/ui/pages/drawTest.dart';
 import 'package:flutter/material.dart';
 
 Widget myNav(BuildContext context) {
@@ -57,10 +59,17 @@ Widget myNav(BuildContext context) {
                   child: Text("Reminder"),
                   value: 1,
                 ),
-                DropdownMenuItem(child: Text("Memories"), value: 2)
+                DropdownMenuItem(child: Text("Explore"), value: 2)
               ],
               onChanged: (value) {
-                print(value);
+                if (value == 2) {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) =>
+                        BlogPage(),
+                    transitionDuration: Duration.zero,
+                    reverseTransitionDuration: Duration.zero,
+                  ));
+                }
               }),
         ),
         SizedBox(
@@ -114,7 +123,14 @@ Widget myNav(BuildContext context) {
                 DropdownMenuItem(child: Text("Audio Test"), value: 2)
               ],
               onChanged: (value) {
-                print(value);
+                if (value == 1) {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) =>
+                        DrawTestPage(),
+                    transitionDuration: Duration.zero,
+                    reverseTransitionDuration: Duration.zero,
+                  ));
+                }
               }),
         )
       ],

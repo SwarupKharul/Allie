@@ -1,5 +1,8 @@
 import 'package:devspace/ui/pages/blog.dart';
+import 'package:devspace/ui/pages/drawTest.dart';
 import 'package:devspace/ui/pages/landing.dart';
+import 'package:devspace/ui/pages/landing2.dart';
+import 'package:devspace/ui/pages/report.dart';
 import 'package:devspace/ui/pages/signIn.dart';
 import 'package:devspace/ui/pages/signUp.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
                   foregroundColor: MaterialStateProperty.all(Colors.black),
                   textStyle: MaterialStateProperty.all(GoogleFonts.poppins(
                       fontSize: 72, color: Colors.black))))),
-      home: BlogPage(),
+      home: Landing(),
     );
   }
 }
