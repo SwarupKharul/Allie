@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@synthetixio/assets": "^2.0.13",
+    "openzeppelin-solidity-2.3.0": "0.0.1-security",
     "synthetix": "^2.67.0-alpha"
   }
 }
