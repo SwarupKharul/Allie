@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User,Data
+from .models import User,Data, Clock,Summary
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -55,3 +55,44 @@ class DataSerializer(serializers.ModelSerializer):
             totaltime = validated_data['totaltime']
         )
         return data
+
+# class HistorySerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = History
+#         fields = '__all__'
+
+#     def create(self,validated_data):
+#         data = History.objects.create(
+#             user = validated_data['user'],
+#             wpm_avg = validated_data['wpm_avg'],
+#             tt_avg = validated_data['tt_avg'],
+#             wpm_normal = validated_data['wpm_normal'],
+#             tt_normal = validated_data['tt_normal'],
+#             # wpm_diff = validated_data['wpm_diff'],
+#             # tt_diff = validated_data['tt_diff'],
+#         )
+#         return data
+
+class ClockDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Clock
+        fields = '__all__'
+
+        def create(self,validated_data):
+            data = Data.objects.create(
+                user = validated_data['user'],
+                value= validated_data['value']
+            )
+            return data
+
+class SummarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Summary
+        fields='__all__'
+
+        def create(self,validated_data):
+            data = Summary.objects.create(
+                user = validated_data['user'],
+                summary= validated_data['summary']
+            )
+            return data
