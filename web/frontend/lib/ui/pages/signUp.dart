@@ -1,8 +1,10 @@
+import 'package:devspace/core/services/auth.dart';
 import 'package:devspace/ui/widgets/greenButton.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  SignUpPage({Key? key, required this.auth}) : super(key: key);
+  Auth auth;
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -10,6 +12,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   @override
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
@@ -87,7 +91,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             "Email",
                             style: Theme.of(context).textTheme.button,
                           ),
-                          TextFormField(),
+                          TextFormField(
+                            controller: _email,
+                          ),
                         ],
                       ),
                     ),
@@ -100,7 +106,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             "Password",
                             style: Theme.of(context).textTheme.button,
                           ),
-                          TextFormField(),
+                          TextFormField(
+                            controller: _password,
+                            obscureText: true,
+                          ),
                         ],
                       ),
                     ),
@@ -113,7 +122,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             "Re-enter Password",
                             style: Theme.of(context).textTheme.button,
                           ),
-                          TextFormField(),
+                          TextFormField(
+                            obscureText: true,
+                          ),
                         ],
                       ),
                     ),
@@ -124,7 +135,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: GreenButton(
                             text: "Register",
                             height: 50,
-                            onp: () {},
+                            onp: () {
+                              widget.auth.register(_email.text, _password.text);
+                              Navigator.pop(context);
+                            },
                             width: 350),
                       ),
                     )
