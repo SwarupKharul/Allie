@@ -6,6 +6,7 @@ import 'package:devspace/ui/pages/landing2.dart';
 import 'package:devspace/ui/pages/report.dart';
 import 'package:devspace/ui/pages/signIn.dart';
 import 'package:devspace/ui/pages/signUp.dart';
+import 'package:devspace/ui/pages/synth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
                     foregroundColor: MaterialStateProperty.all(Colors.black),
                     textStyle: MaterialStateProperty.all(GoogleFonts.poppins(
                         fontSize: 72, color: Colors.black))))),
-        home: DrawTestPage(),
+        home: SynthPage(),
         // Consumer<Auth>(
         //   builder: (context, value, child) {
         //     if (value.state == authState.login)

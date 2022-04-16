@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
@@ -89,8 +90,9 @@ class _DrawTestPageState extends State<DrawTestPage> {
                       ui.Image img2 = await img1.toImage(100, 100);
                       ByteData? dta = await img2.toByteData();
                       ByteBuffer buffer = dta!.buffer;
-                      List im = buffer.asUint8List();
-                      print(im);
+                      var im = buffer.asUint8List();
+                      String base = base64Encode(im);
+                      print(base);
                     },
                     width: 150)
               ],

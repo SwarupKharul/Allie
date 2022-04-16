@@ -40,10 +40,12 @@ class MyApp extends StatelessWidget {
         home: Consumer<Auth>(
           builder: (context, value, child) {
             if (value.state == authState.login)
-              return Landing();
+              return Landing(
+                auth: value,
+              );
             else
-              return Landing();
-            return SignInPage(auth: value);
+              //return Landing();
+              return SignInPage(auth: value);
           },
         ),
       ),

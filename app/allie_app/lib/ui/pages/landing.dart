@@ -1,10 +1,12 @@
+import 'package:allie_app/core/services/auth.dart';
 import 'package:allie_app/ui/pages/home.dart';
 import 'package:allie_app/ui/pages/record.dart';
 import 'package:allie_app/ui/pages/settings.dart';
 import 'package:flutter/material.dart';
 
 class Landing extends StatefulWidget {
-  const Landing({Key? key}) : super(key: key);
+  Landing({Key? key, required this.auth}) : super(key: key);
+  Auth auth;
 
   @override
   State<Landing> createState() => _LandingState();
@@ -15,6 +17,7 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF1F1EA),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Padding(
@@ -38,7 +41,15 @@ class _LandingState extends State<Landing> {
                                 .button!
                                 .copyWith(fontSize: 30),
                           ),
-                        )
+                        ),
+                        Expanded(
+                          child: Container(),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              widget.auth.logout();
+                            },
+                            icon: Icon(Icons.logout))
                       ],
                     ),
                     SizedBox(
@@ -60,7 +71,10 @@ class _LandingState extends State<Landing> {
                     // ),
                     if (icons[1] == Icons.home) HomeView(),
                     if (icons[1] == Icons.settings) SetView(),
-                    if (icons[1] == Icons.mic_rounded) RecView(),
+                    if (icons[1] == Icons.mic_rounded)
+                      Expanded(
+                          child: Align(
+                              alignment: Alignment.center, child: RecView())),
                   ]))),
       floatingActionButton: FloatingActionButton.large(
         child: Icon(
