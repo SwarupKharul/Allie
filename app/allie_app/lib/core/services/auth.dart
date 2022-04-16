@@ -78,17 +78,16 @@ class Auth extends ChangeNotifier {
     var url = Uri.https(api, "/logout/");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('refresh');
-    var response = await http.post(
-      url,
-      body: {
-        "refresh": token,
-      },
-      // headers: {
+    prefs.remove("refresh");
+    prefs.remove("access");
+    var response = await http.post(url, body: {
+      "refresh": token,
+
+      //  headers:
       //   "Access-Control-Allow-Origin": "*",
       //   "Access-Control-Allow-Headers": "Content-Type",
       //   "Referrer-Policy": "no-referrer-when-downgrade"
-      // }
-    );
+    });
 
     if (response.statusCode == 200) {
       var jsonResponse =
@@ -97,12 +96,13 @@ class Auth extends ChangeNotifier {
       prefs.remove('access');
       prefs.remove('refresh');
       state = authState.logout;
-      notifyListeners();
+
       // var itemCount = jsonResponse['totalItems'];
       print(jsonResponse);
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
+    notifyListeners();
   }
 }
 

@@ -1,5 +1,7 @@
 import 'package:devspace/ui/pages/blog.dart';
 import 'package:devspace/ui/pages/drawTest.dart';
+import 'package:devspace/ui/pages/report.dart';
+import 'package:devspace/ui/pages/synth.dart';
 import 'package:flutter/material.dart';
 
 Widget myNav(BuildContext context) {
@@ -34,7 +36,14 @@ Widget myNav(BuildContext context) {
                 DropdownMenuItem(child: Text("NFTs"), value: 2)
               ],
               onChanged: (value) {
-                print(value);
+                if (value == 1) {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) =>
+                        SynthPage(),
+                    transitionDuration: Duration.zero,
+                    reverseTransitionDuration: Duration.zero,
+                  ));
+                }
               }),
         ),
         SizedBox(
@@ -96,7 +105,14 @@ Widget myNav(BuildContext context) {
                 DropdownMenuItem(child: Text("Report 2"), value: 2)
               ],
               onChanged: (value) {
-                print(value);
+                if (value == 2) {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) =>
+                        ReportPage(),
+                    transitionDuration: Duration.zero,
+                    reverseTransitionDuration: Duration.zero,
+                  ));
+                }
               }),
         ),
         SizedBox(
