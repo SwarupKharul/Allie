@@ -1,3 +1,4 @@
+import 'package:allie_app/ui/pages/record.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import "dart:io";
@@ -9,8 +10,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Symbal extends ChangeNotifier {
   final String api = "allie-backend.herokuapp.com";
   bool busy = true;
-
-  Symbal();
+  List<RecordModel> data = [];
+  Symbal() {
+    history();
+  }
 
   void generateSummary() async {
     var url = Uri.https(api, "/summary/");
@@ -41,6 +44,7 @@ class Symbal extends ChangeNotifier {
   }
 
   void history() async {
+    data = [];
     var url = Uri.https(api, "/summaryhistory/");
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -54,14 +58,18 @@ class Symbal extends ChangeNotifier {
       //   "Referrer-Policy": "no-referrer-when-downgrade"
       // }
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
 
-      print(jsonResponse);
-      notifyListeners();
+      for (var i in jsonResponse['history']) {
+        data.add(RecordModel(i['timestamp'], i['keywords']));
+      }
+      print(data);
     } else {
       print('Request failed with status: ${response.statusCode}.');
     }
+
+    notifyListeners();
   }
 }

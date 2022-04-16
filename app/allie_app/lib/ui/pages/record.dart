@@ -8,9 +8,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/date_symbol_data_file.dart';
 import 'package:intl/intl.dart';
 import 'package:path/path.dart' as path;
+import 'package:provider/provider.dart';
 
 class RecView extends StatefulWidget {
-  const RecView({Key? key}) : super(key: key);
+  RecView({
+    required this.symbal,
+    Key? key,
+  }) : super(key: key);
+  Symbal symbal;
 
   @override
   State<RecView> createState() => _RecViewState();
@@ -73,90 +78,89 @@ class _RecViewState extends State<RecView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          (isRecording) ? "Recording..." : " Record",
-          style: Theme.of(context).textTheme.button!.copyWith(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        FloatingActionButton(
-          onPressed: () {
-            if (isRecording) {
-              stopRecording();
-              Symbal().history();
-            } else {
-              startRecording();
-            }
-            setState(() {
-              isRecording = !isRecording;
-            });
-          },
-          backgroundColor: Colors.red,
-          child: (!isRecording)
-              ? Icon(
-                  Icons.fiber_manual_record,
-                  color: Colors.white,
-                )
-              : Icon(
-                  Icons.pause,
-                  color: Colors.white,
-                ),
-        ),
-        SizedBox(
-          height: 40,
-        ),
-        Text(
-          "Your Summaries",
-          style: Theme.of(context).textTheme.button!.copyWith(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-        ),
-        Expanded(
-            child: ListView.builder(
-          itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  border: Border.all(color: Colors.black, width: 2)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      "12 - 6 - 22",
-                      style: Theme.of(context)
-                          .textTheme
-                          .button!
-                          .copyWith(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "lorem ipsum blah blah jgjiijo ivdjuhiuh o hfgiuhiuhiufe huehiudiuhiuhiuhi i ohiuhho",
-                      style: Theme.of(context).textTheme.button,
-                    ),
-                  ],
-                ),
+    return Column(children: [
+      Text(
+        (isRecording) ? "Recording..." : " Record",
+        style: Theme.of(context).textTheme.button!.copyWith(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+      ),
+      SizedBox(
+        height: 40,
+      ),
+      FloatingActionButton(
+        onPressed: () {
+          if (isRecording) {
+            stopRecording();
+            widget.symbal.history();
+          } else {
+            startRecording();
+          }
+          setState(() {
+            isRecording = !isRecording;
+          });
+        },
+        backgroundColor: Colors.red,
+        child: (!isRecording)
+            ? Icon(
+                Icons.fiber_manual_record,
+                color: Colors.white,
+              )
+            : Icon(
+                Icons.pause,
+                color: Colors.white,
+              ),
+      ),
+      SizedBox(
+        height: 40,
+      ),
+      Text(
+        "Your Summaries",
+        style: Theme.of(context).textTheme.button!.copyWith(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+      ),
+      Expanded(
+          child: ListView.builder(
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                border: Border.all(color: Colors.black, width: 2)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    widget.symbal.data[index].date,
+                    style: Theme.of(context)
+                        .textTheme
+                        .button!
+                        .copyWith(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    widget.symbal.data[index].text.join(","),
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                ],
               ),
             ),
           ),
-        ))
-      ],
-    );
+        ),
+        itemCount: widget.symbal.data.length,
+      )),
+    ]);
   }
 }
 
 class RecordModel {
   String date;
-  String text;
+  List text;
 
   RecordModel(this.date, this.text);
 }
