@@ -69,3 +69,34 @@ class Data(models.Model):
 
     def __str__(self):
         return self.user.email
+
+
+# class History(models.Model):
+#     created = models.DateTimeField(auto_now_add=True)
+#     wpm_avg = models.DecimalField(max_digits=5, decimal_places=2)
+#     tt_avg = models.DecimalField(max_digits=5, decimal_places=2)
+#     wpm_normal = models.DecimalField(max_digits=5, decimal_places=2)
+#     tt_normal = models.DecimalField(max_digits=5, decimal_places=2)
+#     # wpm_diff = models.DecimalField(max_digits=5, decimal_places=2)
+#     # tt_diff = models.DecimalField(max_digits=5, decimal_places=2)
+#     user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self.user.email
+
+class Clock(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    value = models.IntegerField()
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.email
+
+class Summary(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    summary = models.CharField(max_length=1000)
+
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.email

@@ -51,6 +51,15 @@ class MyApp extends StatelessWidget {
         //       return Landing(auth: value);
         //   },
         // ),
+        // home: //DrawTestPage(),
+        //     Consumer<Auth>(
+        //   builder: (context, value, child) {
+        //     if (value.state == authState.login)
+        //       return Landing2();
+        //     else
+        //       return Landing(auth: value);
+        //   },
+        // ),
       ),
     );
   }

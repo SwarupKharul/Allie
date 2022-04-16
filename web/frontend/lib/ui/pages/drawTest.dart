@@ -88,6 +88,7 @@ class _DrawTestPageState extends State<DrawTestPage> {
                       PictureDetails img = _controller.finish();
                       ui.Picture img1 = img.picture;
                       ui.Image img2 = await img1.toImage(100, 100);
+                      print(img2);
                       ByteData? dta = await img2.toByteData();
                       ByteBuffer buffer = dta!.buffer;
                       var im = buffer.asUint8List();
