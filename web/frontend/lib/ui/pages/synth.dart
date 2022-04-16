@@ -1,3 +1,4 @@
+import 'package:devspace/core/services/synthapi.dart';
 import 'package:devspace/ui/widgets/appbar.dart';
 import 'package:devspace/ui/widgets/greenButton.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,19 @@ class SynthPage extends StatefulWidget {
 }
 
 class _SynthPageState extends State<SynthPage> {
+  List<String> data = ["0", "0", "0"];
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  void init() async {
+    data = await Syn().data();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,7 +189,13 @@ class _SynthPageState extends State<SynthPage> {
                                               ),
                                         ),
                                         FloatingActionButton.small(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Syn().synthmint().whenComplete(() =>
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        content:
+                                                            Text("Success"))));
+                                          },
                                           elevation: 0,
                                           backgroundColor: Colors.black,
                                           child: Icon(Icons.auto_awesome),
@@ -252,7 +272,97 @@ class _SynthPageState extends State<SynthPage> {
                       ),
                     )
                   ],
-                )
+                ),
+                Container(
+                  height: 150,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 0,
+                      color: Color(0xffF6F6EE),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    data[0],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "Total sUSD Supply",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    data[1],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "Total sBTC Supply",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    data[2],
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    "Total sEther Supply",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline1!
+                                        .copyWith(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             )),
         Align(

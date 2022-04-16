@@ -9,6 +9,11 @@ Widget myNav(BuildContext context) {
     padding: const EdgeInsets.symmetric(horizontal: 200.0),
     child: Row(
       children: [
+        Image.asset(
+          "logo.png",
+          width: 40,
+        ),
+        SizedBox(width: 20),
         TextButton(
             onPressed: () {},
             child: Text(
@@ -99,16 +104,24 @@ Widget myNav(BuildContext context) {
                   value: 0,
                 ),
                 DropdownMenuItem(
-                  child: Text("Report 1"),
+                  child: Text("Test"),
                   value: 1,
                 ),
-                DropdownMenuItem(child: Text("Report 2"), value: 2)
+                DropdownMenuItem(child: Text("Location"), value: 2)
               ],
               onChanged: (value) {
+                if (value == 1) {
+                  Navigator.of(context).push(PageRouteBuilder(
+                    pageBuilder: (context, animation1, animation2) =>
+                        ReportPage1(),
+                    transitionDuration: Duration.zero,
+                    reverseTransitionDuration: Duration.zero,
+                  ));
+                }
                 if (value == 2) {
                   Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (context, animation1, animation2) =>
-                        ReportPage(),
+                        ReportPage2(),
                     transitionDuration: Duration.zero,
                     reverseTransitionDuration: Duration.zero,
                   ));

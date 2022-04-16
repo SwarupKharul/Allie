@@ -2,11 +2,11 @@ import 'package:devspace/ui/widgets/appbar.dart';
 import 'package:devspace/ui/widgets/chart.dart';
 import 'package:flutter/material.dart';
 
-class ReportPage extends StatefulWidget {
-  const ReportPage({Key? key}) : super(key: key);
+class ReportPage1 extends StatefulWidget {
+  const ReportPage1({Key? key}) : super(key: key);
 
   @override
-  State<ReportPage> createState() => _ReportPageState();
+  State<ReportPage1> createState() => _ReportPage1State();
 }
 
 Widget listItem(BuildContext context, List<String> data) {
@@ -68,7 +68,7 @@ Widget listItemL(BuildContext context, List<String> data) {
   );
 }
 
-class _ReportPageState extends State<ReportPage> {
+class _ReportPage1State extends State<ReportPage1> {
   Widget listItem(BuildContext context, List<String> data) {
     List<Widget> dl = List<Widget>.generate(
         data.length,
@@ -113,7 +113,7 @@ class _ReportPageState extends State<ReportPage> {
         Padding(
             padding: const EdgeInsets.only(
                 left: 200.0, right: 200, top: 170, bottom: 30),
-            child: LocReport()),
+            child: TestReport()),
         Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
@@ -360,7 +360,7 @@ class _LocReportState extends State<LocReport> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "Progress Graph",
+                                    "Current Location",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1!
@@ -370,12 +370,12 @@ class _LocReportState extends State<LocReport> {
                                 Expanded(
                                     child: Padding(
                                   padding: const EdgeInsets.all(24.0),
-                                  child: SimpleTimeSeriesChart.withSampleData(),
+                                  child: Image.asset("map.png"),
                                 )),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "You're doing great , Keep Going",
+                                    "In Perimeter",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1!
@@ -392,5 +392,64 @@ class _LocReportState extends State<LocReport> {
             ))
       ],
     );
+  }
+}
+
+class ReportPage2 extends StatefulWidget {
+  const ReportPage2({Key? key}) : super(key: key);
+
+  @override
+  State<ReportPage2> createState() => _ReportPage2State();
+}
+
+class _ReportPage2State extends State<ReportPage2> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Stack(
+      children: [
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            'blogBg.png',
+            fit: BoxFit.fill,
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: myNav(context),
+        ),
+        Padding(
+            padding: const EdgeInsets.only(
+                left: 200.0, right: 200, top: 170, bottom: 30),
+            child: LocReport()),
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 150.0, vertical: 25),
+              child: Divider(
+                color: Colors.grey,
+                thickness: 3,
+              ),
+            )),
+        Positioned(
+          child: Image.asset(
+            "blogOrangePot.png",
+            width: 75,
+          ),
+          bottom: 30,
+          left: 170,
+        ),
+        Positioned(
+          child: Image.asset(
+            "blogBluePot.png",
+            width: 75,
+          ),
+          bottom: 30,
+          right: 170,
+        ),
+      ],
+    ));
   }
 }

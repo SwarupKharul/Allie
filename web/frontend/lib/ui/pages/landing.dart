@@ -26,111 +26,117 @@ class _LandingState extends State<Landing> {
             fit: BoxFit.fill,
           ),
         ),
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "allie",
-                      )),
-                  Expanded(child: Container()),
-                  SizedBox(
-                    width: 189,
-                    height: 57,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      child: Text(
-                        "About Us",
-                        style: Theme.of(context).textTheme.button,
-                      ),
-                      style: ButtonStyle(
-                          side: MaterialStateProperty.all(
-                              BorderSide(width: 2, color: Colors.black))),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 30),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      "logo.png",
+                      width: 40,
                     ),
-                  ),
-                  SizedBox(
-                    width: 21,
-                  ),
-                  SizedBox(
-                    width: 189,
-                    height: 57,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              SignInPage(
-                            auth: widget.auth,
-                          ),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero,
-                        ));
-                      },
-                      child: Text(
-                        "Sign Up",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button!
-                            .copyWith(color: Colors.white),
+                    SizedBox(width: 20),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "allie",
+                        )),
+                    Expanded(child: Container()),
+                    SizedBox(
+                      width: 189,
+                      height: 57,
+                      child: OutlinedButton(
+                        onPressed: () {},
+                        child: Text(
+                          "About Us",
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                        style: ButtonStyle(
+                            side: MaterialStateProperty.all(
+                                BorderSide(width: 2, color: Colors.black))),
                       ),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xff5A9A8B))),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      width: 21,
+                    ),
+                    SizedBox(
+                      width: 189,
+                      height: 57,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                SignInPage(
+                              auth: widget.auth,
+                            ),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ));
+                        },
+                        child: Text(
+                          "Sign In",
+                          style: Theme.of(context)
+                              .textTheme
+                              .button!
+                              .copyWith(color: Colors.white),
+                        ),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Color(0xff5A9A8B))),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "We remember",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1!
-                        .copyWith(color: Colors.black),
-                  ),
-                  Text(
-                    "thier love when they can",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1!
-                        .copyWith(color: Colors.black),
-                  ),
-                  Text(
-                    "no longer remember",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1!
-                        .copyWith(color: Colors.black),
-                  ),
-                  SizedBox(height: 100),
-                  GreenButton(
-                      text: "Get Started",
-                      height: 50,
-                      onp: () {
-                        Auth auth = Auth();
-                        auth.register("suryaa62@gmail.com", "qwertyuiop");
-                        Navigator.of(context).push(PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              SignUpPage(
-                            auth: auth,
-                          ),
-                          transitionDuration: Duration.zero,
-                          reverseTransitionDuration: Duration.zero,
-                        ));
-                      },
-                      width: 350)
-                ],
-              ),
-            )
-          ],
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "We remember",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: Colors.black),
+                    ),
+                    Text(
+                      "thier love when they can",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: Colors.black),
+                    ),
+                    Text(
+                      "no longer remember",
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(color: Colors.black),
+                    ),
+                    SizedBox(height: 100),
+                    GreenButton(
+                        text: "Get Started",
+                        height: 50,
+                        onp: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                SignUpPage(
+                              auth: widget.auth,
+                            ),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ));
+                        },
+                        width: 350)
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ],
     ));
