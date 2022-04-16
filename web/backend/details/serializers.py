@@ -91,6 +91,7 @@ class SummarySerializer(serializers.ModelSerializer):
         fields='__all__'
 
         def create(self,validated_data):
+            # print(validated_data)
             data = Summary.objects.create(
                 user = validated_data['user'],
                 summary= validated_data['summary']
