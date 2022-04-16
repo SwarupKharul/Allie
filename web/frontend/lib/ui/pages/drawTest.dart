@@ -85,15 +85,16 @@ class _DrawTestPageState extends State<DrawTestPage> {
                     text: "Submit",
                     height: 50,
                     onp: () async {
-                      PictureDetails img = _controller.finish();
-                      ui.Picture img1 = img.picture;
-                      ui.Image img2 = await img1.toImage(100, 100);
-                      print(img2);
-                      ByteData? dta = await img2.toByteData();
-                      ByteBuffer buffer = dta!.buffer;
-                      var im = buffer.asUint8List();
-                      String base = base64Encode(im);
-                      print(base);
+                      // PictureDetails img = _controller.finish();
+                      // ui.Picture img1 = img.picture;
+                      // ui.Image img2 = await img1.toImage(100, 100);
+                      // print(img2);
+                      // ByteData? dta = await img2.toByteData();
+                      // ByteBuffer buffer = dta!.buffer;
+                      // var im = buffer.asUint8List();
+                      // String base = base64Encode(im);
+                      // print(base);
+                      _controller.clear();
                     },
                     width: 150)
               ],
