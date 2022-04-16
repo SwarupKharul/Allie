@@ -1,0 +1,1 @@
+web: gunicorn allie.wsgi --log-file -
