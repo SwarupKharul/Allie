@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:devspace/ui/widgets/appbar.dart';
 import 'package:devspace/ui/widgets/greenButton.dart';
@@ -82,10 +83,14 @@ class _DrawTestPageState extends State<DrawTestPage> {
                 GreenButton(
                     text: "Submit",
                     height: 50,
-                    onp: () {
+                    onp: () async {
                       PictureDetails img = _controller.finish();
-                      Picture img1 = img.picture;
-                      print(img1);
+                      ui.Picture img1 = img.picture;
+                      ui.Image img2 = await img1.toImage(100, 100);
+                      ByteData? dta = await img2.toByteData();
+                      ByteBuffer buffer = dta!.buffer;
+                      List im = buffer.asUint8List();
+                      print(im);
                     },
                     width: 150)
               ],
