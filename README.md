@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a >
-    <img src="logo.png" alt="Logo" width="250" height="100">
+    <img src="media/logo.png" alt="Logo" width="250" height="100">
   </a>
   <h1 align="center">allie - Your trusted ally!</h1>
   <p align="center">  
