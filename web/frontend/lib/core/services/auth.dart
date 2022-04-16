@@ -62,6 +62,7 @@ class Auth extends ChangeNotifier {
       var jsonResponse =
           convert.jsonDecode(response.body) as Map<String, dynamic>;
       // var itemCount = jsonResponse['totalItems'];
+      print("dhgvdsgvkfds");
       print(jsonResponse);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('access', jsonResponse['access']);

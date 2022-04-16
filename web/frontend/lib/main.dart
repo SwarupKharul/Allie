@@ -41,15 +41,15 @@ class MyApp extends StatelessWidget {
                     foregroundColor: MaterialStateProperty.all(Colors.black),
                     textStyle: MaterialStateProperty.all(GoogleFonts.poppins(
                         fontSize: 72, color: Colors.black))))),
-        home: DrawTestPage(),
-        // Consumer<Auth>(
-        //   builder: (context, value, child) {
-        //     if (value.state == authState.login)
-        //       return Landing2();
-        //     else
-        //       return Landing(auth: value);
-        //   },
-        // ),
+        home: //DrawTestPage(),
+            Consumer<Auth>(
+          builder: (context, value, child) {
+            if (value.state == authState.login)
+              return Landing2();
+            else
+              return Landing(auth: value);
+          },
+        ),
       ),
     );
   }
