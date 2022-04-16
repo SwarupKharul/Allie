@@ -43,6 +43,7 @@ dependencies:
   flutter_sound: ^8.1.9
   permission_handler: ^9.2.0
   date_format: ^2.0.6
+  animated_text_kit: ^4.2.1
 
 dev_dependencies:
   flutter_test:

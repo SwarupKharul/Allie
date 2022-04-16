@@ -41,16 +41,16 @@ class MyApp extends StatelessWidget {
                 style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(Colors.black),
                     textStyle: MaterialStateProperty.all(GoogleFonts.poppins(
-                        fontSize: 72, color: Colors.black))))),
-        home: SynthPage(),
-        // Consumer<Auth>(
-        //   builder: (context, value, child) {
-        //     if (value.state == authState.login)
-        //       return Landing2();
-        //     else
-        //       return Landing(auth: value);
-        //   },
-        // ),
+                        fontSize: 60, color: Colors.black))))),
+        home: //SynthPage(),
+            Consumer<Auth>(
+          builder: (context, value, child) {
+            if (value.state == authState.login)
+              return Landing2();
+            else
+              return Landing(auth: value);
+          },
+        ),
         // home: //DrawTestPage(),
         //     Consumer<Auth>(
         //   builder: (context, value, child) {

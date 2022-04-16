@@ -35,6 +35,9 @@ class _Landing2State extends State<Landing2> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 100,
+                  ),
                   Text(
                     "We remember",
                     style: Theme.of(context)
