@@ -134,11 +134,7 @@ class ClockDataView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class ClockHistoryView(APIView):
-    permission_classes = (IsAuthenticated, )
-
+    
     def get(self, request):
         user = self.request.user
         datas = list(Clock.objects.filter(user=user.id))
@@ -148,6 +144,7 @@ class ClockHistoryView(APIView):
             history.append({"value": datas[i].value, "timestamp": datas[i].created})
 
         return JsonResponse({"history": history}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class SummaryView(APIView):
@@ -177,11 +174,7 @@ class SummaryView(APIView):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class SummaryHistoryView(APIView):
-    permission_classes = (IsAuthenticated,)
-
+    
     def get(self, request):
         user = self.request.user
         datas = list(Summary.objects.filter(user=user.id))
@@ -193,3 +186,6 @@ class SummaryHistoryView(APIView):
             )
 
         return JsonResponse({"history": history}, status=status.HTTP_201_CREATED)
+
+
+    

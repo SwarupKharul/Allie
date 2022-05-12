@@ -5,9 +5,7 @@ from .views import (
     DataView,
     HistoryView,
     ClockDataView,
-    ClockHistoryView,
     SummaryView,
-    SummaryHistoryView,
 )
 from .views import MyTokenObtainPairView
 
@@ -23,7 +21,5 @@ urlpatterns = [
     path("data/", DataView.as_view()),
     path("history/", HistoryView.as_view()),
     path("clockdata/", ClockDataView.as_view()),
-    path("clockhistory/", ClockHistoryView.as_view()),
     path("summary/", SummaryView.as_view()),
-    path("summaryhistory/", SummaryHistoryView.as_view()),
 ]
